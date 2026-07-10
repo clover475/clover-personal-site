@@ -8,13 +8,16 @@
 - `about.html`：独立 About Me 页面原型
 - `styles.css` / `app.js`：覆盖层交互、光标、夜猫子模式、彩色烟花与小彩蛋
 - `assets/`：当前 UI 参考图资产
+- `assets/hero-art.png`：高分辨率独立 Hero 插画资产
 
 ## 设计约定
 
 - 首页、Projects、Thinking、Contact 按长页面组织
 - About Me 独立成页
 - 静态漫画世界以黑白为主，动效元素使用少量彩色
-- 后续开发重点：原创的曲面滚动转场、鼠标跟随和 Contact 烟花动效
+- Hero 已从低清长图中独立出来，使用高分辨率插画与 SVG 变形 `hello`
+- Contact 使用“点火器 hover 引导 → 点击后 Canvas 烟花”的交互
+- 后续开发重点：把 Projects / Thinking 从长图底稿逐段拆成真实 DOM UI
 
 ## 当前状态
 

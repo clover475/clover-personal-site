@@ -8,21 +8,74 @@
   </head>
   <body class="home-page">
     <main class="prototype-shell" aria-label="Clover homepage visual prototype">
+      <section class="hero-rebuild" aria-label="Clover Hero">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <img class="hero-art" src="assets/hero-art.png" alt="黑白漫画风的高原草原、藏族女孩、水獭与猫" />
+        <div class="hero-hello" aria-hidden="true">
+          <svg class="hello-svg" viewBox="0 0 760 250" role="presentation">
+            <defs>
+              <linearGradient id="hello-gradient" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#8bb9ff" />
+                <stop offset=".48" stop-color="#c3a5ff" />
+                <stop offset="1" stop-color="#a7e8f3" />
+              </linearGradient>
+              <filter id="hello-warp" x="-20%" y="-35%" width="140%" height="170%">
+                <feTurbulence class="hello-noise" type="fractalNoise" baseFrequency=".008 .02" numOctaves="2" seed="8" result="noise" />
+                <feDisplacementMap class="hello-displacement" in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G" />
+                <feGaussianBlur stdDeviation=".18" />
+              </filter>
+              <filter id="hello-glow" x="-25%" y="-35%" width="150%" height="170%">
+                <feGaussianBlur stdDeviation="8" result="blur" />
+                <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+              </filter>
+            </defs>
+            <text x="50%" y="64%" text-anchor="middle" class="hello-text hello-text-shadow" filter="url(#hello-glow)">hello</text>
+            <text x="50%" y="64%" text-anchor="middle" class="hello-text" filter="url(#hello-warp)">hello</text>
+          </svg>
+        </div>
+        <div class="hero-copy" aria-label="Hi, I'm Clover.">
+          <span>Hi,</span>
+          <span>I'm Clover.</span>
+        </div>
+        <nav class="hero-nav" aria-label="首页导航">
+          <a href="about.html">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#thinking">Thinking</a>
+          <a href="#contact">Contact</a>
+          <button class="hero-theme" type="button" aria-label="切换夜猫子模式">◉</button>
+        </nav>
+        <button class="hero-scroll" type="button" aria-label="向下滚动">SCROLL ↓</button>
+      </section>
       <img class="reference-page" src="assets/home-reference.png" alt="Clover 长页面视觉参考" />
       <div class="reference-tint" aria-hidden="true"></div>
-      <div class="hello-orb" aria-hidden="true"><span>hello</span></div>
       <div class="cursor-orb" aria-hidden="true"></div>
       <button class="hotspot hotspot-about" data-target="about.html" aria-label="打开 About Me 页面"></button>
       <a class="hotspot hotspot-projects" href="#projects" aria-label="查看 Projects"></a>
       <a class="hotspot hotspot-thinking" href="#thinking" aria-label="查看 Thinking"></a>
       <a class="hotspot hotspot-contact" href="#contact" aria-label="查看 Contact"></a>
-      <button class="mode-toggle" type="button" aria-label="切换夜猫子模式">◉</button>
       <div class="scroll-cue">SCROLL ↓</div>
+      <section id="about" class="anchor-layer anchor-about" aria-label="About interaction layer"></section>
       <section id="projects" class="anchor-layer" aria-label="Projects interaction layer"></section>
       <section id="thinking" class="anchor-layer anchor-thinking" aria-label="Thinking interaction layer"></section>
       <section id="contact" class="anchor-layer anchor-contact" aria-label="Contact interaction layer">
-        <div class="fireworks" aria-hidden="true">
-          <canvas class="firework-canvas"></canvas>
+        <div class="contact-panel">
+          <div class="contact-copy">
+            <span class="section-index">04</span>
+            <h2>Let's build<br />something kind.</h2>
+            <div class="contact-links">Email ↗ &nbsp;&nbsp; GitHub ↗ &nbsp;&nbsp; LinkedIn ↗</div>
+          </div>
+          <div class="firework-control">
+            <div class="firework-stage">
+              <canvas class="firework-canvas"></canvas>
+              <div class="igniter-glow" aria-hidden="true"></div>
+              <button class="firework-igniter" type="button" aria-label="点燃烟花">
+                <span class="igniter-stick" aria-hidden="true"></span>
+                <span class="igniter-spark" aria-hidden="true">✦</span>
+                <span class="igniter-label">点火</span>
+              </button>
+            </div>
+            <p class="firework-hint">hover / click to light</p>
+          </div>
         </div>
       </section>
     </main>

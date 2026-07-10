@@ -1,8 +1,10 @@
 (() => {
   const root = document.body;
   const cursor = document.querySelector('.cursor-orb');
-  const orb = document.querySelector('.hello-orb');
-  const mode = document.querySelector('.mode-toggle');
+  const helloField = document.querySelector('.hero-hello');
+  const helloNoise = document.querySelector('.hello-noise');
+  const helloDisplacement = document.querySelector('.hello-displacement');
+  const heroMode = document.querySelector('.hero-theme');
   const back = document.querySelector('.back-button');
   let px = window.innerWidth / 2;
   let py = window.innerHeight / 2;
@@ -10,40 +12,98 @@
   let ty = py;
   let previousScroll = window.scrollY;
   let previousFrame = performance.now();
+  let previousSmoothScroll = window.scrollY;
   let curve = 0;
+  let scrollTarget = window.scrollY;
+  let smoothScroll = scrollTarget;
+  let wheelTarget = scrollTarget;
+  let wheelInput = false;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function maxScrollY() {
+    return Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+  }
+
+  if (root.classList.contains('home-page') && !reducedMotion) {
+    window.addEventListener('wheel', (event) => {
+      if (event.ctrlKey) return;
+      event.preventDefault();
+      wheelInput = true;
+      wheelTarget = Math.max(0, Math.min(maxScrollY(), wheelTarget + event.deltaY * .92));
+    }, { passive: false });
+    window.addEventListener('scroll', () => {
+      if (!wheelInput) wheelTarget = window.scrollY;
+    }, { passive: true });
+  }
 
   function moveCursor() {
     px += (tx - px) * .16;
     py += (ty - py) * .16;
     if (cursor) { cursor.style.left = `${px}px`; cursor.style.top = `${py}px`; }
-    if (orb) {
+    if (helloField) {
       const dx = (tx / window.innerWidth - .5) * 28;
       const dy = (ty / window.innerHeight - .5) * 20;
-      orb.style.setProperty('--orb-x', `${dx}px`);
-      orb.style.setProperty('--orb-y', `${dy}px`);
-      orb.style.setProperty('--orb-r', `${dx * .12}deg`);
-      orb.style.setProperty('--orb-s', `${1 + Math.min(0.04, Math.abs(dx + dy) / 900)}`);
+      helloField.style.setProperty('--hello-x', `${dx}px`);
+      helloField.style.setProperty('--hello-y', `${dy}px`);
+      helloField.style.setProperty('--hello-r', `${dx * .12}deg`);
+      helloField.style.setProperty('--hello-skew', `${dy * .04}deg`);
+      helloField.style.setProperty('--hello-scale', `${1 + Math.min(0.04, Math.abs(dx + dy) / 900)}`);
     }
     requestAnimationFrame(moveCursor);
   }
   window.addEventListener('pointermove', (event) => { tx = event.clientX; ty = event.clientY; });
   moveCursor();
 
+  function scrollToSection(selector) {
+    const target = document.querySelector(selector);
+    if (!target) return;
+    const top = target.getBoundingClientRect().top + window.scrollY;
+    if (root.classList.contains('home-page') && !reducedMotion) {
+      wheelInput = true;
+      wheelTarget = Math.max(0, Math.min(maxScrollY(), top));
+    } else {
+      window.scrollTo({ top, behavior: reducedMotion ? 'auto' : 'smooth' });
+    }
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      scrollToSection(link.getAttribute('href'));
+    });
+  });
+  document.querySelector('.hero-scroll')?.addEventListener('click', () => scrollToSection('#about'));
+
   function animateScrollCurve(now) {
     const elapsed = Math.max(16, now - previousFrame);
     const scrollDelta = window.scrollY - previousScroll;
     const velocity = scrollDelta / elapsed;
-    const targetCurve = Math.max(-7, Math.min(7, -velocity * 0.7));
+    if (root.classList.contains('home-page') && !reducedMotion) {
+      const nativeScroll = window.scrollY;
+      const easedTarget = nativeScroll + (wheelTarget - nativeScroll) * .12;
+      if (Math.abs(wheelTarget - nativeScroll) > .15) window.scrollTo(0, easedTarget);
+      scrollTarget = wheelTarget;
+    } else {
+      scrollTarget = window.scrollY;
+    }
+    smoothScroll += (scrollTarget - smoothScroll) * .1;
+    const smoothDelta = smoothScroll - previousSmoothScroll;
+    const targetCurve = Math.max(-7, Math.min(7, -velocity * 0.7 - smoothDelta * .01));
     curve += (targetCurve - curve) * 0.14;
     root.style.setProperty('--scroll-curve', `${curve.toFixed(2)}deg`);
     root.style.setProperty('--scroll-scale', `${(1 - Math.min(.012, Math.abs(curve) / 700)).toFixed(4)}`);
+    if (helloNoise && helloDisplacement) {
+      helloNoise.setAttribute('baseFrequency', `${(.008 + Math.abs(curve) * .001).toFixed(4)} ${(.02 + Math.abs(curve) * .002).toFixed(4)}`);
+      helloDisplacement.setAttribute('scale', `${(8 + Math.abs(curve) * 3).toFixed(1)}`);
+    }
     previousScroll = window.scrollY;
+    previousSmoothScroll = smoothScroll;
     previousFrame = now;
     requestAnimationFrame(animateScrollCurve);
   }
   requestAnimationFrame(animateScrollCurve);
 
-  mode?.addEventListener('click', () => root.classList.toggle('night'));
+  heroMode?.addEventListener('click', () => root.classList.toggle('night'));
   back?.addEventListener('click', () => { window.location.href = 'index.html'; });
   document.querySelector('.hotspot-about')?.addEventListener('click', () => { window.location.href = 'about.html'; });
 
@@ -119,9 +179,16 @@
     fireworkFrame = requestAnimationFrame(animateFireworks);
   }
 
+  const igniter = document.querySelector('.firework-igniter');
+  const hint = document.querySelector('.firework-hint');
+  igniter?.addEventListener('click', () => {
+    igniter.classList.add('is-lit');
+    if (hint) hint.textContent = '✦ launched';
+    launchFireworks();
+  });
+
   const observer = contact ? new IntersectionObserver(([entry]) => {
     root.classList.toggle('contact-active', entry.isIntersecting);
-    if (entry.isIntersecting && !contactWasVisible) launchFireworks();
     contactWasVisible = entry.isIntersecting;
   }, { threshold: .25 }) : null;
   observer?.observe(contact);
