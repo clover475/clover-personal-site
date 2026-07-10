@@ -10,10 +10,10 @@
     <header class="site-header">
       <a class="brand" href="index.html" aria-label="Clo home">Clo <span>✿</span></a>
       <nav class="site-nav" aria-label="主导航">
-        <a class="is-active" href="about.html">About</a>
-        <a href="projects.html">Projects</a>
-        <a href="projects.html#thinking">Thinking</a>
-        <a href="contact.html">Contact</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#thinking">Thinking</a>
+        <a href="#contact">Contact</a>
         <button class="theme-button" type="button" aria-label="切换夜猫子模式">◉</button>
       </nav>
     </header>
@@ -50,6 +50,70 @@
           <span>I'm Clover.</span>
         </div>
         <button class="scroll-marker" type="button" data-scroll-next aria-label="向下滚动">SCROLL ↓</button>
+      </section>
+
+      <section id="about" class="page-main surface-section" data-ripple-area>
+        <div class="ripple-layer" aria-hidden="true"></div>
+        <div class="about-layout" aria-labelledby="home-about-title">
+          <aside class="about-art-frame">
+            <img src="assets/about-landscape.png" alt="水彩高原湖泊与花海" />
+            <div class="paper-note">我喜欢<br /><span>排球</span><br /><span>古建筑</span><br /><span>架子鼓</span><br /><span>泰拳</span></div>
+          </aside>
+          <div class="about-dossier">
+            <div class="page-heading"><span class="section-index">01</span><h1 id="home-about-title">我是谁 <i>✦</i></h1></div>
+            <article class="info-card card-wide">
+              <div class="card-icon">✦</div>
+              <div><h2>一个对人、技术与社会如何共同塑造未来充满好奇的成长者。</h2><p>我本科读哲学，现在在读 AI 相关的硕士。过去三年，我主要做管理咨询和 B 端项目交付，接触组织、流程、业务和真实用户问题。</p></div>
+            </article>
+            <article class="info-card">
+              <div class="card-icon">⌁</div>
+              <div><h2>教育背景</h2><p>哲学本科。AI 相关硕士在读，关注技术与人文的交叉。</p></div>
+            </article>
+            <article class="info-card">
+              <div class="card-icon">▣</div>
+              <div><h2>工作经历</h2><p>3 年管理咨询与 B 端项目交付经验，习惯把复杂信息抽丝剥茧，结构化分析并推动落地。</p></div>
+            </article>
+            <article class="info-card">
+              <div class="card-icon">↗</div>
+              <div><h2>现在在做什么</h2><p>正在向 AI 产品与 FDE 方向转型，关注职业模拟游戏、以人为中心的 AI 评测，以及 AI 与哲学的交叉。</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="page-main projects-main surface-section" data-ripple-area>
+        <div class="ripple-layer" aria-hidden="true"></div>
+        <div class="projects-intro" aria-labelledby="home-projects-title">
+          <span class="section-index">02</span>
+          <h1 id="home-projects-title">Projects</h1>
+          <p>Selected work across AI, product, and tools—<br />building with curiosity and care.</p>
+        </div>
+        <div class="project-grid" aria-label="项目列表">
+          <article class="project-card"><span class="project-number">01</span><div><h2>高考之后</h2><em>Career Simulation Game</em><p>一款面向高中生的角色扮演与决策模拟游戏，在关键人生路口探索可能的未来。</p><a href="#" class="text-link">View Project　→</a></div></article>
+          <article class="project-card"><span class="project-number">02</span><div><h2>Human-centered AI Evaluation</h2><p>构建以人为中心的评估框架与工具集，让 AI 系统更可用、可信与可持续。</p><a href="#" class="text-link">View Project　→</a></div></article>
+          <article class="project-card"><span class="project-number">03</span><div><h2>CompanionBench</h2><em>Personality-Agent Matching</em><p>面向个体差异的智能体匹配与评测基准，让每个人都能遇见更合拍的 AI 伙伴。</p><a href="#" class="text-link">View Project　→</a></div></article>
+          <article class="project-card"><span class="project-number">04</span><div><h2>个人工作流 &amp; 公共生活工具</h2><p>从个人效率到社区协作，持续关注简洁、温暖、可持续的工具与体验。</p><a href="#" class="text-link">Ongoing　→</a></div></article>
+        </div>
+        <div id="thinking" class="thinking-strip" aria-labelledby="home-thinking-title">
+          <span class="section-index">03</span><h2 id="home-thinking-title">Thinking <i>✦</i></h2>
+          <div class="thinking-grid"><a href="#">AI 与人：评估一个 AI 是否“懂人”，到底在评估什么？</a><a href="#">职业与选择：为什么我想把人生选择做成游戏？</a><a href="#">技术与生活：AI 不只应该提高效率。</a></div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact-main surface-section" data-ripple-area>
+        <img class="contact-lake" src="assets/contact-lake.png" alt="水彩湖面、水獭和猫" />
+        <button class="animal-hotspot animal-otter" type="button" aria-label="水獭小彩蛋"><span>·</span></button>
+        <button class="animal-hotspot animal-cat" type="button" aria-label="猫咪小彩蛋"><span>·</span></button>
+        <div class="ripple-layer" aria-hidden="true"></div>
+        <div class="contact-content" aria-labelledby="home-contact-title">
+          <h1 id="home-contact-title">Let's build<br />something <span class="kind-word">kind</span>.</h1>
+          <div class="contact-actions" aria-label="联系方式">
+            <a class="contact-action" href="mailto:hello@cloverli.com"><span>✉</span> Email <b>→</b></a>
+            <a class="contact-action" href="https://github.com/clover475" target="_blank" rel="noreferrer"><span>◉</span> GitHub <b>→</b></a>
+            <a class="contact-action" href="https://www.linkedin.com" target="_blank" rel="noreferrer"><span>in</span> LinkedIn <b>→</b></a>
+          </div>
+          <p class="contact-caption">点击湖面或空白处，让水面回应一下。</p>
+        </div>
       </section>
     </main>
     <script src="app.js"></script>

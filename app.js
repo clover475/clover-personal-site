@@ -98,6 +98,11 @@
   });
 
   document.querySelector('[data-scroll-next]')?.addEventListener('click', () => {
+    const nextSection = document.querySelector('#about');
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
+      return;
+    }
     window.location.href = 'about.html';
   });
 
