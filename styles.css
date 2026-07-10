@@ -13,7 +13,7 @@ button, a { font: inherit; }
 .prototype-shell, .about-shell { position: relative; width: 100%; overflow: hidden; }
 .prototype-shell { min-height: 260vh; }
 .about-shell { min-height: 100vh; }
-.reference-page { display: block; width: 100%; height: auto; user-select: none; pointer-events: none; }
+.reference-page { display: block; width: 100%; height: auto; user-select: none; pointer-events: none; transform: perspective(1800px) rotateX(var(--scroll-curve, 0deg)) scale(var(--scroll-scale, 1)); transform-origin: center 8%; will-change: transform; }
 .reference-tint { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 58% 20%, rgba(168, 151, 255, .07), transparent 32%), linear-gradient(180deg, transparent 45%, rgba(255,255,255,.05)); mix-blend-mode: screen; }
 
 .hello-orb { position: fixed; z-index: 4; left: 21vw; top: 9vh; width: min(32vw, 510px); aspect-ratio: 2.45; border-radius: 48% 52% 46% 54%; pointer-events: none; opacity: .18; filter: blur(.2px); background: linear-gradient(120deg, rgba(112, 170, 255, .55), rgba(213, 166, 255, .48), rgba(176, 239, 255, .42)); box-shadow: inset 18px 14px 28px rgba(255,255,255,.65), inset -20px -16px 35px rgba(102,124,255,.16), 0 24px 80px rgba(122, 144, 255, .16); transform: translate3d(var(--orb-x, 0px), var(--orb-y, 0px), 0) rotate(var(--orb-r, 0deg)) scale(var(--orb-s, 1)); transition: transform 180ms cubic-bezier(.22,1,.36,1); }
@@ -30,16 +30,19 @@ button, a { font: inherit; }
 .anchor-layer { position: absolute; left: 0; right: 0; top: 29%; height: 43%; pointer-events: none; }
 .anchor-thinking { top: 72%; }
 .anchor-contact { top: 91%; height: 8%; }
-.fireworks { position: absolute; right: 16%; top: 10%; width: 190px; height: 160px; opacity: 0; transition: opacity 400ms ease; }
-.fireworks::before, .fireworks::after { content: "✦  ·  ✧  ·  ✦"; position: absolute; inset: 0; color: #b990ff; font-size: 26px; letter-spacing: 18px; animation: burst 1.8s ease-out infinite; }
-.fireworks::after { color: #ffba75; transform: translate(35px, 24px) scale(.7); animation-delay: .35s; }
-.contact-active .fireworks { opacity: .9; }
-@keyframes burst { 0%, 100% { transform: scale(.55); opacity: .15; } 50% { transform: scale(1.3); opacity: .95; } }
+.fireworks { position: absolute; right: 14%; top: 8%; width: 260px; height: 210px; opacity: 0; transition: opacity 400ms ease; pointer-events: none; }
+.firework-canvas { display: block; width: 100%; height: 100%; }
+.contact-active .fireworks { opacity: .95; }
 
 .about-page .reference-page { min-height: 100vh; object-fit: cover; object-position: center; }
 .back-button { position: fixed; z-index: 9; top: 23px; left: 24px; width: 34px; height: 34px; border: 1px solid rgba(20,20,20,.6); border-radius: 50%; background: rgba(255,255,255,.72); font-size: 18px; }
 .night { filter: invert(.92) hue-rotate(175deg) saturate(.72); background: #121525; }
 .night .reference-tint { mix-blend-mode: multiply; opacity: .22; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reference-page { transform: none !important; transition: none; }
+  .hello-orb { transition: none; }
+}
 
 @media (max-width: 720px) {
   .prototype-shell { min-height: 180vh; }
