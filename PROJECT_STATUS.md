@@ -24,6 +24,8 @@ Updated: 2026-07-11
 - Command: `node --check app.js` and `git diff --check`
 - Result: passed
 - Asset generation: `imagegen` generated the three watercolor assets; the project-specific image2 entrypoint was unavailable, so these are not image2 results.
+- Command: HTTP checks for `/`, `/about.html`, `/projects.html`, `/contact.html`, and all three new watercolor assets
+- Result: all returned HTTP 200 from Vercel after commit `498ff2b`.
 - Manual check: browser visual review is still required for the new page layouts and interaction timing.
 
 ## Next smallest task
