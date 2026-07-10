@@ -3,15 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>About Me — Clover</title>
+    <title>About — Clo</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="about-page">
-    <main class="about-shell" aria-label="Clover About Me visual prototype">
-      <img class="reference-page" src="assets/about-reference.png" alt="Clover About Me 档案页视觉参考" />
-      <div class="reference-tint" aria-hidden="true"></div>
-      <button class="back-button" type="button" aria-label="返回首页">←</button>
-      <div class="cursor-orb" aria-hidden="true"></div>
+  <body class="site-page page-about" data-page="about">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Clo home">Clo <span>✿</span></a>
+      <nav class="site-nav" aria-label="主导航">
+        <a class="is-active" href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="projects.html#thinking">Thinking</a>
+        <a href="contact.html">Contact</a>
+        <button class="theme-button" type="button" aria-label="切换夜猫子模式">◉</button>
+      </nav>
+    </header>
+    <main class="page-main surface-section" data-ripple-area>
+      <div class="ripple-layer" aria-hidden="true"></div>
+      <section class="about-layout" aria-labelledby="about-title">
+        <aside class="about-art-frame">
+          <img src="assets/about-landscape.png" alt="水彩高原湖泊与花海" />
+          <div class="paper-note">我喜欢<br /><span>排球</span><br /><span>古建筑</span><br /><span>架子鼓</span><br /><span>泰拳</span></div>
+        </aside>
+        <div class="about-dossier">
+          <div class="page-heading"><span class="section-index">01</span><h1 id="about-title">我是谁 <i>✦</i></h1></div>
+          <article class="info-card card-wide">
+            <div class="card-icon">✦</div>
+            <div><h2>一个对人、技术与社会如何共同塑造未来充满好奇的成长者。</h2><p>我本科读哲学，现在在读 AI 相关的硕士。过去三年，我主要做管理咨询和 B 端项目交付，接触组织、流程、业务和真实用户问题。</p></div>
+          </article>
+          <article class="info-card">
+            <div class="card-icon">⌁</div>
+            <div><h2>教育背景</h2><p>哲学本科。AI 相关硕士在读，关注技术与人文的交叉。</p></div>
+          </article>
+          <article class="info-card">
+            <div class="card-icon">▣</div>
+            <div><h2>工作经历</h2><p>3 年管理咨询与 B 端项目交付经验，习惯把复杂信息抽丝剥茧，结构化分析并推动落地。</p></div>
+          </article>
+          <article class="info-card">
+            <div class="card-icon">↗</div>
+            <div><h2>现在在做什么</h2><p>正在向 AI 产品与 FDE 方向转型，关注职业模拟游戏、以人为中心的 AI 评测，以及 AI 与哲学的交叉。</p></div>
+          </article>
+        </div>
+      </section>
     </main>
     <script src="app.js"></script>
   </body>
