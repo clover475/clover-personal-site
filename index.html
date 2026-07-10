@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Clover — visual prototype</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="home-page">
+    <main class="prototype-shell" aria-label="Clover homepage visual prototype">
+      <img class="reference-page" src="assets/home-reference.png" alt="Clover 长页面视觉参考" />
+      <div class="reference-tint" aria-hidden="true"></div>
+      <div class="hello-orb" aria-hidden="true"><span>hello</span></div>
+      <div class="cursor-orb" aria-hidden="true"></div>
+      <button class="hotspot hotspot-about" data-target="about.html" aria-label="打开 About Me 页面"></button>
+      <a class="hotspot hotspot-projects" href="#projects" aria-label="查看 Projects"></a>
+      <a class="hotspot hotspot-thinking" href="#thinking" aria-label="查看 Thinking"></a>
+      <a class="hotspot hotspot-contact" href="#contact" aria-label="查看 Contact"></a>
+      <button class="mode-toggle" type="button" aria-label="切换夜猫子模式">◉</button>
+      <div class="scroll-cue">SCROLL ↓</div>
+      <section id="projects" class="anchor-layer" aria-label="Projects interaction layer"></section>
+      <section id="thinking" class="anchor-layer anchor-thinking" aria-label="Thinking interaction layer"></section>
+      <section id="contact" class="anchor-layer anchor-contact" aria-label="Contact interaction layer">
+        <div class="fireworks" aria-hidden="true"></div>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
