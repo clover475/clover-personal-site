@@ -7,6 +7,7 @@ Updated: 2026-07-11
 - Public repository: `clover475/clover-personal-site`
 - Current prototype uses the approved long-page reference UI for Hero, About, Projects, Thinking, and Contact.
 - About Me is kept as a separate page.
+- Vercel review URL: https://youtube-murex-xi.vercel.app
 
 ## This session
 
@@ -18,8 +19,10 @@ Updated: 2026-07-11
 
 - Command: `node --check app.js` and `git diff --check`
 - Result: passed
-- Manual check: scroll curve and Contact fireworks should be checked in a browser.
-- Remaining gap: the current environment previously blocked local HTTP server startup, so browser QA may require opening the files through the GitHub preview or a permitted static server.
+- Command: `curl -I -L https://youtube-murex-xi.vercel.app`, `.../about.html`, and `.../assets/home-reference.png`
+- Result: all returned HTTP 200 from Vercel.
+- Manual check: scroll curve and Contact fireworks still need visual review in your browser.
+- Remaining gap: in-app browser attachment timed out during this check, so visual QA is intentionally left for your review link.
 
 ## Next smallest task
 
